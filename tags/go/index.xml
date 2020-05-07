@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>sab&#39;s</title>
-    <link>http://thepedestrian.in/</link>
-    <description>Recent content on sab&#39;s</description>
+    <title>go on sab&#39;s</title>
+    <link>http://thepedestrian.in/tags/go/</link>
+    <description>Recent content in go on sab&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 23 Mar 2017 11:39:17 +0530</lastBuildDate>
     
-	<atom:link href="http://thepedestrian.in/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://thepedestrian.in/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Setting up the blog with org mode</title>
-      <link>http://thepedestrian.in/posts/try-org-hugo/</link>
-      <pubDate>Thu, 07 May 2020 22:50:48 +0200</pubDate>
-      
-      <guid>http://thepedestrian.in/posts/try-org-hugo/</guid>
-      <description> Hello world  func main() { fmt.Println(&amp;#34;Hello world&amp;#34;) }  </description>
-    </item>
     
     <item>
       <title>SOLID principles in Golang</title>

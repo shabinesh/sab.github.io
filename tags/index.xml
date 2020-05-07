@@ -6,9 +6,37 @@
     <description>Recent content in Tags on sab&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Thu, 23 Mar 2017 11:39:17 +0530</lastBuildDate>
     
 	<atom:link href="http://thepedestrian.in/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>go</title>
+      <link>http://thepedestrian.in/tags/go/</link>
+      <pubDate>Thu, 23 Mar 2017 11:39:17 +0530</pubDate>
+      
+      <guid>http://thepedestrian.in/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go-design-patterns</title>
+      <link>http://thepedestrian.in/tags/go-design-patterns/</link>
+      <pubDate>Thu, 23 Mar 2017 11:39:17 +0530</pubDate>
+      
+      <guid>http://thepedestrian.in/tags/go-design-patterns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>http://thepedestrian.in/tags/golang/</link>
+      <pubDate>Thu, 23 Mar 2017 11:39:17 +0530</pubDate>
+      
+      <guid>http://thepedestrian.in/tags/golang/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
