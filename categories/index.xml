@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on sab&#39;s</title>
-    <link>http://thepedestrian.in/categories/</link>
+    <link>http://shabinesh.github.io/categories/</link>
     <description>Recent content in Categories on sab&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="http://thepedestrian.in/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://shabinesh.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
