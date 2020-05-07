@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://thepedestrian.in/posts/</loc>
+    <lastmod>2020-05-07T22:50:48+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://thepedestrian.in/</loc>
+    <lastmod>2020-05-07T22:50:48+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://thepedestrian.in/posts/try-org-hugo/</loc>
+    <lastmod>2020-05-07T22:50:48+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://thepedestrian.in/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>http://thepedestrian.in/tags/</loc>
+  </url>
+  
+</urlset>
