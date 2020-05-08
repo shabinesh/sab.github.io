@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
       
-  Posts &ndash; Notes
+  golang &ndash; Notes
 
     </title>
     
@@ -49,18 +49,54 @@
 
 <div>
 
-  <h1>Posts</h1>
+  <h1>golang</h1>
   
 
-  <ul>
   
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/2018-08-14-golang-docker/">
+        <div class="h2 mt-1 mb-1">dockerize go programs</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/golang' class="muted-link">
+  <span class="Label Label--gray-darker">golang</span>
+</a>
+
+
+
+<a href='/tags/golang' class="muted-link">
+  <span class="Label Label--gray">golang</span>
+</a>
+
+<a href='/tags/docker' class="muted-link">
+  <span class="Label Label--gray">docker</span>
+</a>
+
+
+      <div class="float-md-right">
+        <span>2018-08-14</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    again this is for my self reference:
+Assume this is the production grade program we need to dockerize and run.
+package main import &#34;fmt&#34; func main() { fmt.Println(&#34;saying hello to the world&#34;) } FROMgolang:1.10-alpine as builderWORKDIR/go/src/github.com/shabinesh/progCOPY main.go .COPY vendor ./vendorRUN CGO_ENABLED=0 go build -o main .FROMalpine:latest RUN apk --no-cache add ca-certificatesWORKDIR/COPY --from=0 /go/src/github.com/shabinesh/prog/main .CMD [&#34;./main&#34;] 
+    <a class="muted-link" href="/2018-08-14-golang-docker/">…</a>
+  </div>
+</div>
+
   
-  <li><a href=http://shabinesh.github.io/posts/try-org-hugo/>Setting up the blog with org mode</a></li>
-  
-  
-  <li><a href=http://shabinesh.github.io/posts/2017-03-23-solid-principals/>SOLID principles in Golang</a></li>
-  
-  </ul>
+
   
   
 
@@ -111,6 +147,11 @@
     <a href="/categories/" class="link-gray-dark">
       <h4>Categories</h4>
     </a>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/golang" class="link-gray text-emphasized css-truncate-target"><span class="">Golang</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
     
   </div>
 

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
       
-  Posts &ndash; Notes
+  docker &ndash; Notes
 
     </title>
     
@@ -49,18 +49,48 @@
 
 <div>
 
-  <h1>Posts</h1>
+  <h1>docker</h1>
   
 
-  <ul>
   
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/notes/docker-golang/">
+        <div class="h2 mt-1 mb-1">Docker Golang</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+
+
+<a href='/tags/golang' class="muted-link">
+  <span class="Label Label--gray">golang</span>
+</a>
+
+<a href='/tags/docker' class="muted-link">
+  <span class="Label Label--gray">docker</span>
+</a>
+
+
+      <div class="float-md-right">
+        <span>2020-05-08</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+     again this is for my self reference:  Assume this is the production grade program we need to dockerize and run. package main import &#34;fmt&#34; func main() { fmt.Println(&#34;saying hello to the world&#34;) }  FROM golang:1.10-alpine as builder WORKDIR /go/src/github.com/shabinesh/prog COPY main.go . COPY vendor ./vendor RUN CGO_ENABLED=0 go build -o main . FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR / COPY --from=0 /go/src/github.com/shabinesh/prog/main . CMD [&#34;./main&#34;]  
+    <a class="muted-link" href="/notes/docker-golang/">…</a>
+  </div>
+</div>
+
   
-  <li><a href=http://shabinesh.github.io/posts/try-org-hugo/>Setting up the blog with org mode</a></li>
-  
-  
-  <li><a href=http://shabinesh.github.io/posts/2017-03-23-solid-principals/>SOLID principles in Golang</a></li>
-  
-  </ul>
+
   
   
 

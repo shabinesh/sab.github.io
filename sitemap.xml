@@ -3,6 +3,41 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://shabinesh.github.io/tags/docker/</loc>
+    <lastmod>2020-05-08T13:53:26+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/notes/docker-golang/</loc>
+    <lastmod>2020-05-08T13:53:26+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/tags/go/</loc>
+    <lastmod>2020-05-08T13:53:26+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/tags/golang/</loc>
+    <lastmod>2020-05-08T13:53:26+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/notes/</loc>
+    <lastmod>2020-05-08T13:53:26+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/</loc>
+    <lastmod>2020-05-08T13:53:26+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/tags/</loc>
+    <lastmod>2020-05-08T13:53:26+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shabinesh.github.io/posts/</loc>
     <lastmod>2020-05-07T22:50:48+02:00</lastmod>
   </url>
@@ -13,32 +48,12 @@
   </url>
   
   <url>
-    <loc>http://shabinesh.github.io/tags/go/</loc>
-    <lastmod>2017-03-23T11:39:17+05:30</lastmod>
-  </url>
-  
-  <url>
     <loc>http://shabinesh.github.io/tags/go-design-patterns/</loc>
     <lastmod>2017-03-23T11:39:17+05:30</lastmod>
   </url>
   
   <url>
-    <loc>http://shabinesh.github.io/tags/golang/</loc>
-    <lastmod>2017-03-23T11:39:17+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shabinesh.github.io/</loc>
-    <lastmod>2017-03-23T11:39:17+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shabinesh.github.io/2017-03-23-solid-principals/</loc>
-    <lastmod>2017-03-23T11:39:17+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shabinesh.github.io/tags/</loc>
+    <loc>http://shabinesh.github.io/posts/2017-03-23-solid-principals/</loc>
     <lastmod>2017-03-23T11:39:17+05:30</lastmod>
   </url>
   
