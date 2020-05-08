@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Notes</title>
-    <link>http://shabinesh.github.io/notes/</link>
-    <description>Recent content on Notes</description>
+    <title>learning language on Notes</title>
+    <link>http://shabinesh.github.io/categories/learning-language/</link>
+    <description>Recent content in learning language on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 08 May 2020 13:53:26 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 22 May 2018 23:43:08 +0200</lastBuildDate>
     
-	<atom:link href="http://shabinesh.github.io/notes/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://shabinesh.github.io/categories/learning-language/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Docker Golang</title>
-      <link>http://shabinesh.github.io/notes/docker-golang/</link>
-      <pubDate>Fri, 08 May 2020 13:53:26 +0200</pubDate>
-      
-      <guid>http://shabinesh.github.io/notes/docker-golang/</guid>
-      <description> again this is for my self reference:  Assume this is the production grade program we need to dockerize and run. package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(&amp;#34;saying hello to the world&amp;#34;) }  FROM golang:1.10-alpine as builder WORKDIR /go/src/github.com/shabinesh/prog COPY main.go . COPY vendor ./vendor RUN CGO_ENABLED=0 go build -o main . FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR / COPY --from=0 /go/src/github.com/shabinesh/prog/main . CMD [&amp;#34;./main&amp;#34;]  </description>
-    </item>
     
     <item>
       <title>Hiragana First Steps</title>

@@ -48,6 +48,31 @@
   </url>
   
   <url>
+    <loc>http://shabinesh.github.io/categories/</loc>
+    <lastmod>2018-05-22T23:43:08+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/notes/japanese-hiragana-first-steps/</loc>
+    <lastmod>2018-05-22T23:43:08+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/tags/japanese/</loc>
+    <lastmod>2018-05-22T23:43:08+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/tags/languages/</loc>
+    <lastmod>2018-05-22T23:43:08+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/categories/learning-language/</loc>
+    <lastmod>2018-05-22T23:43:08+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shabinesh.github.io/tags/productivity/</loc>
     <lastmod>2018-04-15T14:15:30+02:00</lastmod>
   </url>
@@ -70,10 +95,6 @@
   <url>
     <loc>http://shabinesh.github.io/posts/2017-03-23-solid-principals/</loc>
     <lastmod>2017-03-23T11:39:17+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shabinesh.github.io/categories/</loc>
   </url>
   
 </urlset>
