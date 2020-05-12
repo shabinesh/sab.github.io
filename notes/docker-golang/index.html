@@ -13,7 +13,7 @@
     </title>
     
     
-    <meta name="description" property="og:description" content=" again this is for my self reference:  Assume this is the production grade program we need to dockerize and run. package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(&amp;#34;saying hello to the world&amp;#34;) }  FROM golang:1.10-alpine as builder WORKDIR /go/src/github.com/shabinesh/prog COPY main.go . COPY vendor ./vendor RUN CGO_ENABLED=0 go build -o main . FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR / COPY --from=0 /go/src/github.com/shabinesh/prog/main . CMD [&amp;#34;./main&amp;#34;]  |">
+    <meta name="description" property="og:description" content="again this is for my self reference or for easy copy-paste for new projects.  Assume this is the production grade program we need to dockerize and run. package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(&amp;#34;saying hello to the world&amp;#34;) }  Basic  FROM golang:1.14-alpine as builder WORKDIR /go/src/github.com/shabinesh/prog COPY main.go . COPY vendor ./vendor RUN go build -o main . FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR / COPY --from=0 /go/src/github.|">
     
 
     <meta name="apple-mobile-web-app-title" content="Notes">
@@ -55,6 +55,10 @@
     
 
 
+<a href='/categories/self-references' class="muted-link">
+  <span class="Label Label--gray-darker">self references</span>
+</a>
+
 
 
 <a href='/tags/golang' class="muted-link">
@@ -81,8 +85,9 @@
 <article>
   
   <section class="pb-6 mb-3 border-bottom">
-    <p>
-again this is for my self reference:
+    
+<p>
+again this is for my self reference or for easy copy-paste for new projects.
 </p>
 <p>
 Assume this is the production grade program we need to dockerize and run. 
@@ -96,18 +101,79 @@ Assume this is the production grade program we need to dockerize and run.
      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;saying hello to the world&#34;</span>)
 }</code></pre></div>
 </div>
+<h3 id="headline-1">
+Basic
+</h3>
 <div class="src src-text">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">FROM golang:1.10-alpine as builder
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">FROM golang:1.14-alpine as builder
 WORKDIR /go/src/github.com/shabinesh/prog
 COPY main.go  .
 COPY vendor ./vendor
-RUN CGO_ENABLED=0 go build -o main .
+RUN go build -o main .
 
 FROM alpine:latest 
 RUN apk --no-cache add ca-certificates
 WORKDIR /
 COPY --from=0 /go/src/github.com/shabinesh/prog/main .
 CMD [&#34;./main&#34;]</code></pre></div>
+</div>
+<h3 id="headline-2">
+If there is private repository, for example 
+</h3>
+<div class="src src-text">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">FROM golang:1.14-alpine AS builder
+ 
+ARG GITHUB_TOKEN
+ 
+WORKDIR /go/src/github.com/my-org/hello-service
+ 
+RUN apk add --update bash make git curl ca-certificates
+ 
+# Patch git to use a private token if one was provided
+ 
+RUN if [ ! -z &#34;${GITHUB_TOKEN}&#34; ]; then \
+    git config --global --add url.&#34;https://${GITHUB_TOKEN}@github.com/my-org/&#34;.insteadOf &#34;git@github.com:my-org/&#34; &amp;&amp; \
+    git config --global --add url.&#34;https://${GITHUB_TOKEN}@github.com/my-org/&#34;.insteadOf &#34;https://github.com/my-org/&#34; &amp;&amp; \
+    git config --global --add url.&#34;https://${GITHUB_TOKEN}@github.com/my-org/&#34;.insteadOf &#34;https://git@github.com/my-org/&#34;; \
+fi
+ 
+RUN go build -o main .</code></pre></div>
+</div>
+<h3 id="headline-3">
+docker-compose with service and postgres
+</h3>
+<div class="src src-text">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">version: &#34;3.0&#34;  
+
+services:
+
+ hello-service:
+   build:
+     context: .
+     dockerfile: Dockerfile.dev
+     args:
+       - GITHUB_TOKEN
+   environment:
+     SERVER_PORT: 80
+   volumes:
+   - .:/go/src/github.com/my-org/hello-service
+   command: &#34;CompileDaemon -build=&#39;make build&#39; -command=&#39;./build/hello-service&#39;&#34;
+   ports:
+     - &#34;8000:80&#34;
+   depends_on:
+     - postgres
+
+ postgres:
+   image: postgres:12
+   ports:
+     - &#34;5432:5432&#34;
+   environment:
+     POSTGRES_USER: app_user
+     POSTGRES_PASSWORD: app_password
+     POSTGRES_DB: hello_service
+   healthcheck:
+     test: [&#34;CMD-SHELL&#34;, &#34;pg_isready -U ca&#34;]
+     retries: 3</code></pre></div>
 </div>
 
   </section>
@@ -126,7 +192,16 @@ CMD [&#34;./main&#34;]</code></pre></div>
           
   
     <div id="toc" class="Box Box--blue mb-3">
-      <b>Docker Golang</b></div>
+      <b>Docker Golang</b><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">Basic</a>
+</li>
+<li><a href="#headline-2">If there is private repository, for example </a>
+</li>
+<li><a href="#headline-3">docker-compose with service and postgres</a>
+</li>
+</ul>
+</nav></div>
   
 
   

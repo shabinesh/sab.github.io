@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>docker on Notes</title>
-    <link>http://shabinesh.github.io/tags/docker/</link>
-    <description>Recent content in docker on Notes</description>
+    <title>self references on Notes</title>
+    <link>http://shabinesh.github.io/categories/self-references/</link>
+    <description>Recent content in self references on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 08 May 2020 13:53:26 +0200</lastBuildDate>
     
-	<atom:link href="http://shabinesh.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://shabinesh.github.io/categories/self-references/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

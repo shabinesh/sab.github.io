@@ -17,7 +17,7 @@
       <pubDate>Fri, 08 May 2020 13:53:26 +0200</pubDate>
       
       <guid>http://shabinesh.github.io/notes/docker-golang/</guid>
-      <description> again this is for my self reference:  Assume this is the production grade program we need to dockerize and run. package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(&amp;#34;saying hello to the world&amp;#34;) }  FROM golang:1.10-alpine as builder WORKDIR /go/src/github.com/shabinesh/prog COPY main.go . COPY vendor ./vendor RUN CGO_ENABLED=0 go build -o main . FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR / COPY --from=0 /go/src/github.com/shabinesh/prog/main . CMD [&amp;#34;./main&amp;#34;]  </description>
+      <description>again this is for my self reference or for easy copy-paste for new projects.  Assume this is the production grade program we need to dockerize and run. package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(&amp;#34;saying hello to the world&amp;#34;) }  Basic  FROM golang:1.14-alpine as builder WORKDIR /go/src/github.com/shabinesh/prog COPY main.go . COPY vendor ./vendor RUN go build -o main . FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR / COPY --from=0 /go/src/github.</description>
     </item>
     
     <item>

@@ -66,6 +66,10 @@
       
 
 
+<a href='/categories/self-references' class="muted-link">
+  <span class="Label Label--gray-darker">self references</span>
+</a>
+
 
 
 <a href='/tags/golang' class="muted-link">
@@ -84,7 +88,7 @@
   </div>
   <div class="text-gray">
     
-     again this is for my self reference:  Assume this is the production grade program we need to dockerize and run. package main import &#34;fmt&#34; func main() { fmt.Println(&#34;saying hello to the world&#34;) }  FROM golang:1.10-alpine as builder WORKDIR /go/src/github.com/shabinesh/prog COPY main.go . COPY vendor ./vendor RUN CGO_ENABLED=0 go build -o main . FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR / COPY --from=0 /go/src/github.com/shabinesh/prog/main . CMD [&#34;./main&#34;]  
+    again this is for my self reference or for easy copy-paste for new projects.  Assume this is the production grade program we need to dockerize and run. package main import &#34;fmt&#34; func main() { fmt.Println(&#34;saying hello to the world&#34;) }  Basic  FROM golang:1.14-alpine as builder WORKDIR /go/src/github.com/shabinesh/prog COPY main.go . COPY vendor ./vendor RUN go build -o main . FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR / COPY --from=0 /go/src/github.
     <a class="muted-link" href="/notes/docker-golang/">…</a>
   </div>
 </div>
@@ -164,6 +168,11 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/learning-language" class="link-gray text-emphasized css-truncate-target"><span class="">Learning language</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/self-references" class="link-gray text-emphasized css-truncate-target"><span class="">Self references</span></a>
       <span class="text-right Counter">1</span>
     </span>
     
