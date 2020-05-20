@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
       
-  self references &ndash; Notes
+  study notes &ndash; Notes
 
     </title>
     
@@ -49,7 +49,7 @@
 
 <div>
 
-  <h1>self references</h1>
+  <h1>study notes</h1>
   
 
   
@@ -58,38 +58,34 @@
 <div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
   <div class="Subhead mb-2">
     <div class="Subhead-heading">
-      <a href="/notes/docker-golang/">
-        <div class="h2 mt-1 mb-1">Docker Golang</div>
+      <a href="/notes/golang-reflect/">
+        <div class="h2 mt-1 mb-1">Golang Reflect</div>
       </a>
     </div>
     <div class="Subhead-description">
       
 
 
-<a href='/categories/self-references' class="muted-link">
-  <span class="Label Label--gray-darker">self references</span>
+<a href='/categories/golang' class="muted-link">
+  <span class="Label Label--gray-darker">golang</span>
+</a>
+
+<a href='/categories/study-notes' class="muted-link">
+  <span class="Label Label--gray-darker">study notes</span>
 </a>
 
 
-
-<a href='/tags/golang' class="muted-link">
-  <span class="Label Label--gray">golang</span>
-</a>
-
-<a href='/tags/docker' class="muted-link">
-  <span class="Label Label--gray">docker</span>
-</a>
 
 
       <div class="float-md-right">
-        <span>2020-05-08</span>
+        <span>2020-05-19</span>
       </div>
     </div>
   </div>
   <div class="text-gray">
     
-    again this is for my self reference or for easy copy-paste for new projects.  Assume this is the production grade program we need to dockerize and run. package main import &#34;fmt&#34; func main() { fmt.Println(&#34;saying hello to the world&#34;) }  Basic  FROM golang:1.14-alpine as builder WORKDIR /go/src/github.com/shabinesh/prog COPY main.go . COPY vendor ./vendor RUN go build -o main . FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR / COPY --from=0 /go/src/github.
-    <a class="muted-link" href="/notes/docker-golang/">…</a>
+    Reflection in Golang  Incase you are here looking to learn about reflection, a better resource is https://blog.golang.org/laws-of-reflection   Interfaces in Go are types which hold concrete value and underlying type of the value with a precondition that value should implement methods of the interface. For example; types implementing Read([]byte) (int, error) method satisfy the io.Reader interface. However interface{}, without any method definition will match all types.  A struct type can be assigned to an empty interface, the assertion is the concrete type should implement the methods of the interface type.
+    <a class="muted-link" href="/notes/golang-reflect/">…</a>
   </div>
 </div>
 

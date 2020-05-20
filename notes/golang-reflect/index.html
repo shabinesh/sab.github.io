@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  Golang Reflect &ndash; Notes
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="Reflection in Golang  Incase you are here looking to learn about reflection, a better resource is https://blog.golang.org/laws-of-reflection   Interfaces in Go are types which hold concrete value and underlying type of the value with a precondition that value should implement methods of the interface. For example; types implementing Read([]byte) (int, error) method satisfy the io.Reader interface. However interface{}, without any method definition will match all types.  A struct type can be assigned to an empty interface, the assertion is the concrete type should implement the methods of the interface type.|">
+    
+
+    <meta name="apple-mobile-web-app-title" content="Notes">
+    
+    
+    
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="http://shabinesh.github.io/">
+    Notes
+  </a>
+
+  
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">Golang Reflect</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/golang' class="muted-link">
+  <span class="Label Label--gray-darker">golang</span>
+</a>
+
+<a href='/categories/study-notes' class="muted-link">
+  <span class="Label Label--gray-darker">study notes</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2020-05-19. Published at: 2020-05-19.">
+        
+          Published: 2020-05-19
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    
+<h2 id="headline-1">
+Reflection in Golang
+</h2>
+<pre class="example">
+Incase you are here looking to learn about reflection, a better resource is
+https://blog.golang.org/laws-of-reflection
+</pre>
+<p>
+  Interfaces in Go are types which hold concrete value and underlying
+  type of the value with a precondition that value should implement
+  methods of the interface. For example; types implementing
+  <em>Read([]byte) (int, error)</em> method satisfy the io.Reader
+  interface. However <em>interface{}</em>, without any method definition will
+  match all types.
+</p>
+<p>
+  A struct type can be assigned to an empty interface, the assertion
+  is the concrete type should implement the methods of the interface
+  type. In the following example there are no methods that need to be
+  implemented, hence the assertion passes.
+</p>
+<figure>
+<div class="src src-go">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">T</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">x</span> <span style="color:#66d9ef">string</span>
+}
+
+<span style="color:#a6e22e">t</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">T</span>{}
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#66d9ef">interface</span>{}
+<span style="color:#a6e22e">x</span> = <span style="color:#a6e22e">t</span></code></pre></div>
+</div>
+<figcaption>
+example 1
+</figcaption>
+</figure>
+<p>
+  On inspecting the interface, <em>reflect.Type</em> represents the value
+  part of the interface and <em>reflect.Type</em> represents the underlying
+  type of the value in the interface. The actual interface can be got
+  with the <em>Interface()</em> method of the <em>Value</em>.
+</p>
+<figure>
+<div class="src src-go">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">T</span> <span style="color:#66d9ef">struct</span> {
+  <span style="color:#a6e22e">x</span> <span style="color:#66d9ef">string</span>
+}
+
+<span style="color:#a6e22e">x</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">T</span>{<span style="color:#e6db74">&#34;hello&#34;</span>}
+<span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">ValueOf</span>(<span style="color:#a6e22e">x</span>)
+<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Interface</span>())
+<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;type of p:&#34;</span>, <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Type</span>())
+<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Kind</span>())
+<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">CanSet</span>())</code></pre></div>
+</div>
+<pre class="example">
+&amp;{hello}
+type of p: *main.T
+ptr
+false
+</pre>
+<figcaption>
+example 2
+</figcaption>
+</figure>
+<h3 id="headline-2">
+Can the value be updated
+</h3>
+<p>
+   Most often we need to modify value of a struct. <em>CanSet()</em> is used
+   to know if the interface values can be updated. From <code class="verbatim">example 1</code>,
+   the value is not settable. That is because we should be looking at
+   the value <em>p</em> is pointing which can be found by using <em>Elem()</em>
+   method.
+</p>
+<pre class="example">
+p.Elem().CanSet()
+</pre>
+<p>
+   This still would not work because the value is not a refrence to
+   <em>x</em> but rather copy of <em>x</em>.
+</p>
+<figure>
+<div class="src src-go">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">T</span> <span style="color:#66d9ef">struct</span> {
+  <span style="color:#a6e22e">x</span> <span style="color:#66d9ef">string</span>
+}
+
+<span style="color:#a6e22e">x</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">T</span>{<span style="color:#e6db74">&#34;hello&#34;</span>}
+<span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">ValueOf</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">x</span>)
+<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Interface</span>())
+<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;type of p:&#34;</span>, <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Type</span>())
+<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Elem</span>().<span style="color:#a6e22e">CanSet</span>())</code></pre></div>
+</div>
+<pre class="example">
+&amp;{hello}
+type of p: *main.T
+true
+</pre>
+<figcaption>
+example 3
+</figcaption>
+</figure>
+<h3 id="headline-3">
+Accessing struct fields
+</h3>
+<p>
+   struct fields can be accessed using the <em>Field</em>, <em>FieldByName</em>, <em>FieldbyNameFunc</em> methods.
+</p>
+<figure>
+<div class="src src-go">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">T</span> <span style="color:#66d9ef">struct</span> {
+  <span style="color:#a6e22e">X</span> <span style="color:#66d9ef">string</span>
+  <span style="color:#a6e22e">Y</span> <span style="color:#66d9ef">string</span>
+}
+
+<span style="color:#a6e22e">x</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">T</span>{}
+<span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">ValueOf</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">x</span>)
+<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Elem</span>().<span style="color:#a6e22e">Field</span>(<span style="color:#ae81ff">0</span>).<span style="color:#a6e22e">SetString</span>(<span style="color:#e6db74">&#34;Hello&#34;</span>)
+<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Elem</span>().<span style="color:#a6e22e">FieldByName</span>(<span style="color:#e6db74">&#34;Y&#34;</span>).<span style="color:#a6e22e">SetString</span>(<span style="color:#e6db74">&#34;you&#34;</span>)
+<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">x</span>)</code></pre></div>
+</div>
+<pre class="example">
+{Hello you}
+</pre>
+<figcaption>
+example 4
+</figcaption>
+</figure>
+<h3 id="headline-4">
+Struct tags
+</h3>
+<p>
+   <em>StructTag</em> is the approach many libraries take for accessing and
+   modifying struct values. Which many of us are familiar with Go&#39;s
+   <em>json</em> module.
+</p>
+<div class="src src-go">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">T</span> <span style="color:#66d9ef">struct</span> {
+   <span style="color:#a6e22e">X</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;x_struct_tag&#34;`</span>
+}
+<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">TypeOf</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">T</span>{}).<span style="color:#a6e22e">Elem</span>().<span style="color:#a6e22e">NumField</span>())
+<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">TypeOf</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">T</span>{}).<span style="color:#a6e22e">Elem</span>().<span style="color:#a6e22e">Field</span>(<span style="color:#ae81ff">0</span>).<span style="color:#a6e22e">Tag</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#34;json&#34;</span>))</code></pre></div>
+</div>
+<pre class="example">
+1
+x_struct_tag
+</pre>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>Golang Reflect</b><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">Reflection in Golang</a>
+<ul>
+<li><a href="#headline-2">Can the value be updated</a>
+</li>
+<li><a href="#headline-3">Accessing struct fields</a>
+</li>
+<li><a href="#headline-4">Struct tags</a>
+</li>
+</ul>\n</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>

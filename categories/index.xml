@@ -6,10 +6,28 @@
     <description>Recent content in Categories on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 08 May 2020 13:53:26 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 19 May 2020 17:10:38 +0200</lastBuildDate>
     
 	<atom:link href="http://shabinesh.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>golang</title>
+      <link>http://shabinesh.github.io/categories/golang/</link>
+      <pubDate>Tue, 19 May 2020 17:10:38 +0200</pubDate>
+      
+      <guid>http://shabinesh.github.io/categories/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>study notes</title>
+      <link>http://shabinesh.github.io/categories/study-notes/</link>
+      <pubDate>Tue, 19 May 2020 17:10:38 +0200</pubDate>
+      
+      <guid>http://shabinesh.github.io/categories/study-notes/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>self references</title>

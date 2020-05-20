@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>golang on Notes</title>
-    <link>http://shabinesh.github.io/categories/golang/</link>
-    <description>Recent content in golang on Notes</description>
+    <title>study notes on Notes</title>
+    <link>http://shabinesh.github.io/categories/study-notes/</link>
+    <description>Recent content in study notes on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 19 May 2020 17:10:38 +0200</lastBuildDate>
     
-	<atom:link href="http://shabinesh.github.io/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://shabinesh.github.io/categories/study-notes/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
