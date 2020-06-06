@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  Mocking AWS Postgres Extensions &ndash; Notes
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="Mocking AWS PG Extensions   The project I am working on uses RDS with aws_s3 (&amp;amp; aws_commons) postgres extensions. However these extensions are also need postgres docker container used in the CI for integration tests to not break the migrations. A mock extension was built to keep the tests from breaking.    Create .control files    Create the schema for the module being created    Add the functions in the schema in sql files    In this case there are two .|">
+    
+
+    <meta name="apple-mobile-web-app-title" content="Notes">
+    
+    
+    
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="http://shabinesh.github.io/">
+    Notes
+  </a>
+
+  
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">Mocking AWS Postgres Extensions</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/self-references' class="muted-link">
+  <span class="Label Label--gray-darker">self references</span>
+</a>
+
+
+
+<a href='/tags/docker' class="muted-link">
+  <span class="Label Label--gray">docker</span>
+</a>
+
+<a href='/tags/aws' class="muted-link">
+  <span class="Label Label--gray">aws</span>
+</a>
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2020-06-06. Published at: 2020-06-06.">
+        
+          Published: 2020-06-06
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    
+<h2 id="headline-1">
+Mocking AWS PG Extensions 
+</h2>
+<p>
+  The project I am working on uses RDS with aws_s3 (&amp; aws_commons)
+  postgres extensions. However these extensions are also need postgres
+  docker container used in the CI for integration tests to not break
+  the migrations. A mock extension was built to keep the tests from
+  breaking. 
+</p>
+<ul>
+<li>
+<p>
+Create <strong>.control</strong> files
+</p>
+</li>
+<li>
+<p>
+Create the schema for the module being created
+</p>
+</li>
+<li>
+<p>
+Add the functions in the schema in sql files
+</p>
+</li>
+</ul>
+<p>
+In this case there are two <strong>.control</strong> files, <em>aws_common.control</em> &amp; <em>aws_s3.control</em>
+</p>
+<figure>
+<div class="src src-text">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">comment = &#39;aws_commons mock&#39;
+default_version = &#39;1.0&#39;
+module_pathname = &#39;$libdir/aws_commons&#39;
+relocatable = false</code></pre></div>
+</div>
+<figcaption>
+<em>aws_common.control</em>
+</figcaption>
+</figure>
+<figure>
+<div class="src src-text">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">comment = &#39;aws_s3 mock&#39;
+default_version = &#39;1.0&#39;
+module_pathname = &#39;$libdir/aws_s3&#39;
+relocatable = false</code></pre></div>
+</div>
+<figcaption>
+<em>aws_s3.control</em>
+</figcaption>
+</figure>
+<p>
+ We then define the functions that these modules export in a file name
+ of the form <em>&lt;module_name&gt;-&lt;default_version&gt;.sql</em>. 
+</p>
+<figure>
+<div class="src src-sql">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">schema</span> <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">exists</span> aws_commons;
+
+<span style="color:#66d9ef">create</span> <span style="color:#66d9ef">type</span> aws_commons.uri <span style="color:#66d9ef">as</span> (
+   bucket varchar,
+   filepath varchar,
+   s3_region varchar
+);
+
+<span style="color:#66d9ef">create</span> <span style="color:#66d9ef">or</span> <span style="color:#66d9ef">replace</span> <span style="color:#66d9ef">function</span> aws_commons.create_s3_uri(bucket varchar, filepath varchar, s3_region varchar) <span style="color:#66d9ef">returns</span> aws_commons.uri <span style="color:#66d9ef">as</span>
+   <span style="color:#960050;background-color:#1e0010">$$</span>
+   <span style="color:#66d9ef">begin</span>
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">row</span>(bucket, filepath, s3_region);
+   <span style="color:#66d9ef">end</span>
+   <span style="color:#960050;background-color:#1e0010">$$</span>
+<span style="color:#66d9ef">language</span> plpgsql;</code></pre></div>
+</div>
+<figcaption>
+<em>aws_commons–1.0.sql</em>
+</figcaption>
+</figure>
+<figure>
+<div class="src src-sql">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">schema</span> <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">exists</span> aws_s3;
+
+<span style="color:#66d9ef">create</span> <span style="color:#66d9ef">or</span> <span style="color:#66d9ef">replace</span> <span style="color:#66d9ef">function</span> aws_s3.table_import_from_s3(tbl varchar, cols varchar, opts varchar, uri aws_commons.uri) <span style="color:#66d9ef">returns</span> void <span style="color:#66d9ef">as</span>
+    <span style="color:#960050;background-color:#1e0010">$$</span>
+    <span style="color:#66d9ef">begin</span>
+        <span style="color:#66d9ef">return</span>;
+    <span style="color:#66d9ef">end</span>;
+    <span style="color:#960050;background-color:#1e0010">$$</span>
+<span style="color:#66d9ef">language</span> plpgsql;</code></pre></div>
+</div>
+<figcaption>
+<em>aws_s3–1.0.sql</em>
+</figcaption>
+</figure>
+<p>
+ These are now installable and can be installed by copying them to the right path
+</p>
+<figure>
+<div class="src src-text">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">FROM postgres:12-alpine
+
+ENV POSTGRES_DB &#39;&#39;
+ENV POSTGRES_USER &#39;&#39;
+ENV POSTGRES_PASSWORD &#39;&#39;
+
+COPY dummy_extensions/extensions.sql /docker-entrypoint-initdb.d/
+COPY dummy_extensions/ /usr/local/share/postgresql/extension/</code></pre></div>
+</div>
+<figcaption>
+<em>Dockerfile</em>
+</figcaption>
+</figure>
+<p>
+ And <em>extensions.sql</em> would install it when the containers boots up
+</p>
+<figure>
+<div class="src src-text">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">create extension aws_commons;
+create extension aws_s3;</code></pre></div>
+</div>
+<figcaption>
+<em>extensions.sql</em>
+</figcaption>
+</figure>
+<p>
+ There are <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL.Procedural.Importing.html#aws_s3.table_import_from_s3">others functions</a> that could be mocked, this was all needed for me.
+</p>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>Mocking AWS Postgres Extensions</b><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">Mocking AWS PG Extensions </a>
+</li>
+</ul>
+</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>
