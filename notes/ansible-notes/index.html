@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  Ansible Notes &ndash; Notes
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="Install ansible (on fedora)  sudo dnf install ansible  ansible --version  Create the inventory file   Ansible gets information of machines it has to act on by reading from the inventory file, or `–inventory` flag. ansible all --inventory &amp;#34;localhost,&amp;#34; --module-name debug   This command tell ansible to run on all machines listed in inventory the debug module. This would print localhost | SUCCESS =&amp;gt; { &amp;#34;msg&amp;#34;: &amp;#34;Hello world!|">
+    
+
+    <meta name="apple-mobile-web-app-title" content="Notes">
+    
+    
+    
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="http://thepedestrian.in/">
+    Notes
+  </a>
+
+  
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">Ansible Notes</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/self-references' class="muted-link">
+  <span class="Label Label--gray-darker">self references</span>
+</a>
+
+<a href='/categories/study-notes' class="muted-link">
+  <span class="Label Label--gray-darker">study notes</span>
+</a>
+
+
+
+<a href='/tags/ansible' class="muted-link">
+  <span class="Label Label--gray">ansible</span>
+</a>
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2020-06-13. Published at: 2020-06-13.">
+        
+          Published: 2020-06-13
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    
+<h2 id="headline-1">
+Install ansible (on fedora)
+</h2>
+<div class="src src-sh">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo dnf install ansible</code></pre></div>
+</div>
+<div class="src src-shell">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ansible --version</code></pre></div>
+</div>
+<h2 id="headline-2">
+Create the inventory file
+</h2>
+<p>
+   Ansible gets information of machines it has to act on by reading from the inventory file, or  `–inventory` flag.
+</p>
+<div class="src src-sh">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ansible all --inventory <span style="color:#e6db74">&#34;localhost,&#34;</span> --module-name debug</code></pre></div>
+</div>
+<p>
+   This command tell ansible to run on <em>all</em> machines listed in inventory the <em>debug</em> module. This would print
+</p>
+<div class="src src-text">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">localhost | SUCCESS =&gt; {
+ &#34;msg&#34;: &#34;Hello world!&#34;
+}</code></pre></div>
+</div>
+<p>
+   Since this is for multiple machines &amp; possibly remote, say &#34;staging&#34; &amp; &#34;production&#34;, create a new file named <em>inventory</em>
+</p>
+<figure>
+<div class="src src-text">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">localhost
+staging.my-nice.app.io ansible_ssh_user=root ansible_ssh_port=22</code></pre></div>
+</div>
+<figcaption>
+inventory
+</figcaption>
+</figure>
+<p>
+   There are two more options apart from hostname for the remote
+   machine: ssh username it should login as and the port it should
+   connect to. And run again with these shortened syntax
+</p>
+<div class="src src-sh">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ansible all -i ./inventory -m debug</code></pre></div>
+</div>
+<p>
+   Most often, multiple machines would do perform certain role, for
+   example - there could be database server and application server, we
+   could also make this file bit more useful by grouping them with
+   their responsibilities
+</p>
+<div class="src src-toml">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">application</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">servers</span>]
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">my</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">nice</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">io</span>
+<span style="color:#a6e22e">app</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">staging</span>.<span style="color:#a6e22e">my</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">nice</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">io</span>
+
+[<span style="color:#a6e22e">database</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">servers</span>]
+<span style="color:#a6e22e">db</span>.<span style="color:#a6e22e">my</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">nice</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">io</span></code></pre></div>
+</div>
+<h2 id="headline-3">
+Introducing Playbooks
+</h2>
+<p>
+   Now that we have lists of hosts, we need to tell a high level plan
+   of what needs to be done on each of the machines. Playbook is a
+   yaml file where we can specify this plan, this plan is usually a
+   set of <em>tasks</em>. Name this file <em>deploy.yml</em>
+</p>
+<figure>
+<div class="src src-yaml">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+
+- <span style="color:#66d9ef">name</span>: Install Python3<span style="color:#ae81ff">.7</span>
+  <span style="color:#66d9ef">hosts</span>: application-server
+
+  <span style="color:#66d9ef">tasks</span>:
+    - <span style="color:#66d9ef">name</span>: update system packages
+      <span style="color:#66d9ef">apt</span>:
+        <span style="color:#66d9ef">upgrade</span>: yes
+        <span style="color:#66d9ef">update_cache</span>: yes
+
+    - <span style="color:#66d9ef">name</span>: Install python3<span style="color:#ae81ff">.7</span>
+      <span style="color:#66d9ef">apt</span>:
+        <span style="color:#66d9ef">name</span>: python3<span style="color:#ae81ff">.7</span>
+        <span style="color:#66d9ef">state</span>: present
+
+- <span style="color:#66d9ef">name</span>: Install Postgresql <span style="color:#ae81ff">12</span>
+  <span style="color:#66d9ef">hosts</span>: database-server
+
+  <span style="color:#66d9ef">tasks</span>:
+    - <span style="color:#66d9ef">name</span>: update system packages
+      <span style="color:#66d9ef">apt</span>:
+       <span style="color:#66d9ef">upgrade</span>: yes
+       <span style="color:#66d9ef">update_cache</span>: yes
+
+    - <span style="color:#66d9ef">name</span>: Install Postgres<span style="color:#ae81ff">-12</span>
+      <span style="color:#66d9ef">apt</span>:
+        <span style="color:#66d9ef">name</span>: postgres<span style="color:#ae81ff">-12</span>
+        <span style="color:#66d9ef">state</span>: present</code></pre></div>
+</div>
+<figcaption>
+deploy.yml
+</figcaption>
+</figure>
+<p>
+   Steps in the playbooks says, update system packages of
+   <em>application-servers</em> and install python3.7 and the next step says
+   update the system packages and install postgres in the
+   <em>database-servers</em>. We should be able to run this with
+</p>
+<div class="src src-sh">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ansible-playbook -i inventory deploy.yml</code></pre></div>
+</div>
+<p>
+   Normally, there might be tens of steps if not hundereds, Updating
+   the system packages in the case above is a common task across all
+   machines. We could organise groups of tasks
+</p>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>Ansible Notes</b><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">Install ansible (on fedora)</a>
+</li>
+<li><a href="#headline-2">Create the inventory file</a>
+</li>
+<li><a href="#headline-3">Introducing Playbooks</a>
+</li>
+</ul>
+</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>
