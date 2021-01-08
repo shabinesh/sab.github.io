@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://thepedestrian.in/notes/</loc>
+    <lastmod>2021-01-05T14:37:33+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://thepedestrian.in/</loc>
+    <lastmod>2021-01-05T14:37:33+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://thepedestrian.in/notes/postgres-partitions/</loc>
+    <lastmod>2021-01-05T14:37:33+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://thepedestrian.in/tags/postgresql/</loc>
+    <lastmod>2021-01-05T14:37:33+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://thepedestrian.in/tags/study-notes/</loc>
+    <lastmod>2021-01-05T14:37:33+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://thepedestrian.in/tags/</loc>
+    <lastmod>2021-01-05T14:37:33+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://thepedestrian.in/tags/ansible/</loc>
     <lastmod>2020-06-13T20:43:05+02:00</lastmod>
   </url>
@@ -18,27 +48,12 @@
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/notes/</loc>
-    <lastmod>2020-06-13T20:43:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://thepedestrian.in/</loc>
-    <lastmod>2020-06-13T20:43:05+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://thepedestrian.in/categories/self-references/</loc>
     <lastmod>2020-06-13T20:43:05+02:00</lastmod>
   </url>
   
   <url>
     <loc>http://thepedestrian.in/categories/study-notes/</loc>
-    <lastmod>2020-06-13T20:43:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://thepedestrian.in/tags/</loc>
     <lastmod>2020-06-13T20:43:05+02:00</lastmod>
   </url>
   

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  Postgres Partitions &ndash; Notes
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="Postgres partitions   A better resources is https://www.postgresql.org/docs/10/ddl-partitioning.html  Postgres let&amp;#39;s us split a large table in to smaller entities, done for managebility, performance. Typical usecase includes:     Improve query performance of frequently accessed data from fewer partitions.    Bulk delete or upload. Eg: Delete all records more than 3 months old.    Seperate stale data from actively used data.   Partitioning  Declarative   Declarative partitioning lets us specify the desired outcome without much details on how the partition happens behind the scenes.|">
+    
+
+    <meta name="apple-mobile-web-app-title" content="Notes">
+    
+    
+    
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="http://thepedestrian.in/">
+    Notes
+  </a>
+
+  
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">Postgres Partitions</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+
+
+<a href='/tags/study-notes' class="muted-link">
+  <span class="Label Label--gray">study notes</span>
+</a>
+
+<a href='/tags/postgresql' class="muted-link">
+  <span class="Label Label--gray">postgresql</span>
+</a>
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2021-01-05. Published at: 2021-01-05.">
+        
+          Published: 2021-01-05
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    
+<h2 id="headline-1">
+Postgres partitions
+</h2>
+<p>
+  <strong>A better resources is <a href="https://www.postgresql.org/docs/10/ddl-partitioning.html">https://www.postgresql.org/docs/10/ddl-partitioning.html</a></strong>
+</p>
+<p>
+  Postgres let&#39;s us split a large table in to smaller entities, done for managebility, performance. 
+</p>
+<h4 id="headline-2">
+Typical usecase includes:
+</h4>
+<ul>
+<li>
+<p>
+Improve query performance of frequently accessed data from fewer partitions. 
+</p>
+</li>
+<li>
+<p>
+Bulk delete or upload. Eg: Delete all records more than 3 months old.
+</p>
+</li>
+<li>
+<p>
+Seperate stale data from actively used data.
+</p>
+</li>
+</ul>
+<h3 id="headline-3">
+Partitioning 
+</h3>
+<h4 id="headline-4">
+Declarative
+</h4>
+<p>
+    Declarative partitioning lets us specify the desired outcome without much details on how the partition happens behind the scenes. 
+</p>
+<p>
+    For instance we have a large table with orders partitioned by country
+</p>
+<h6 id="headline-5">
+Create the table to be partitioned
+</h6>
+<div class="src src-sql">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> orders
+(
+    order_id   INT     <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+    created_at <span style="color:#66d9ef">TIMESTAMP</span> <span style="color:#66d9ef">DEFAULT</span> NOW(),
+    item_id    INT,
+    country    VARCHAR <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+    <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (order_id, country)
+) PARTITION <span style="color:#66d9ef">BY</span> LIST (country);</code></pre></div>
+</div>
+<p>
+    Please note that primary key is a combination of table&#39;s <em>primary
+    key</em> (order_id) and the <em>partition key</em> (country). This is a
+    limitation of partitioned table, partition key must be part of the
+    primary key.
+</p>
+<h6 id="headline-6">
+Create the partitions
+</h6>
+<div class="src src-sql">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> orders_de PARTITION <span style="color:#66d9ef">OF</span> orders <span style="color:#66d9ef">FOR</span> <span style="color:#66d9ef">VALUES</span> <span style="color:#66d9ef">IN</span> (<span style="color:#e6db74">&#39;de&#39;</span>);
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> orders_in PARTITION <span style="color:#66d9ef">OF</span> orders <span style="color:#66d9ef">FOR</span> <span style="color:#66d9ef">VALUES</span> <span style="color:#66d9ef">IN</span> (<span style="color:#e6db74">&#39;in&#39;</span>);</code></pre></div>
+</div>
+<p>
+    Data is stored in the respective partition without caring about
+    which partition the data is saved. In the following, data inserted
+    into the <em>orders</em> are queriable from <em>orders</em> and also from the
+    partition table <em>orders_de</em>.
+</p>
+<div class="src src-sql">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> orders (order_id, item_id, country)  <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">12345</span>, <span style="color:#ae81ff">4352</span>, <span style="color:#e6db74">&#39;de&#39;</span>);
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> orders;
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> orders_de;</code></pre></div>
+</div>
+<p>
+    Output
+</p>
+<table>
+<thead>
+<tr>
+<th class="align-right">order_id</th>
+<th>date</th>
+<th class="align-right">item_id</th>
+<th>country</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="align-right">12345</td>
+<td>2021-01-05 16:17:20.377778</td>
+<td class="align-right">4352</td>
+<td>de</td>
+</tr>
+</tbody>
+</table>
+<h4 id="headline-7">
+Joins on partitioned tables
+</h4>
+<p>
+    Lets introduce billing table which is also partitioned
+</p>
+<div class="src src-sql">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> billing
+(
+    billing_id INT,
+    order_id   INT,
+    price      INT,
+    country    VARCHAR,
+
+    <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (billing_id, country),
+    <span style="color:#66d9ef">FOREIGN</span> <span style="color:#66d9ef">KEY</span> (order_id, country) <span style="color:#66d9ef">REFERENCES</span> orders (order_id, country)
+) PARTITION <span style="color:#66d9ef">BY</span> LIST (country);
+
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> billing_de PARTITION <span style="color:#66d9ef">OF</span> billing <span style="color:#66d9ef">FOR</span> <span style="color:#66d9ef">VALUES</span> <span style="color:#66d9ef">IN</span> (<span style="color:#e6db74">&#39;de&#39;</span>);
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> billing_in PARTITION <span style="color:#66d9ef">OF</span> billing <span style="color:#66d9ef">FOR</span> <span style="color:#66d9ef">VALUES</span> <span style="color:#66d9ef">IN</span> (<span style="color:#e6db74">&#39;in&#39;</span>);</code></pre></div>
+</div>
+<p>
+    For partition-wise joins to work (as intended), they should be
+    equi-partitioned. For example, for the below query - the join will
+    find matching partitions based on bounds. In this case, the join
+    pairs are <em>orders_de</em>, <em>billing_de</em> and <em>orders_in</em>, <em>billing_in</em>.
+    But if <em>billing</em> table had another partition <em>billing_us</em>, it will
+    not be paired with anything.
+</p>
+<div class="src src-sql">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> orders
+<span style="color:#66d9ef">JOIN</span> billing b <span style="color:#66d9ef">ON</span> orders.order_id <span style="color:#f92672">=</span> b.order_id <span style="color:#66d9ef">AND</span> orders.country <span style="color:#f92672">=</span> b.country;</code></pre></div>
+</div>
+<h4 id="headline-8">
+Adding and removing partitions 
+</h4>
+<h5 id="headline-9">
+Add or attach partition
+</h5>
+<p>
+If we started accepting orders from US, then this would be as easy as create a partition and attached the partition.
+</p>
+<div class="src src-sql">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> orders_us partition <span style="color:#66d9ef">of</span> orders <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">values</span> <span style="color:#66d9ef">in</span> (<span style="color:#e6db74">&#39;us&#39;</span>);
+<span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> billing_us partition <span style="color:#66d9ef">of</span> billing <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">values</span> <span style="color:#66d9ef">in</span> (<span style="color:#e6db74">&#39;us&#39;</span>);</code></pre></div>
+</div>
+<p>
+    Other options is to create a table which is not a partition and attach it as a partition.
+</p>
+<div class="src src-sql">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> billing_us
+(<span style="color:#66d9ef">LIKE</span> billing <span style="color:#66d9ef">INCLUDING</span> <span style="color:#66d9ef">DEFAULTS</span> <span style="color:#66d9ef">INCLUDING</span> <span style="color:#66d9ef">CONSTRAINTS</span>);
+
+<span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> billing ATTACH PARTITION billing_us
+<span style="color:#66d9ef">FOR</span> <span style="color:#66d9ef">VALUES</span> <span style="color:#66d9ef">IN</span> (<span style="color:#e6db74">&#39;us&#39;</span>);</code></pre></div>
+</div>
+<h5 id="headline-10">
+Remove partitions
+</h5>
+<p>
+An to remove a partition, dropping the partition works. However
+    this requires getting an exclusive lock on the parent table. But
+    detaching partitions is another options which would retain the
+    table.
+</p>
+<div class="src src-sql">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> orders DETACH PARTITION orders_us;</code></pre></div>
+</div>
+<h4 id="headline-11">
+Storage costs
+</h4>
+<p>
+    Partitions are meant to make large (say &gt; 100 GB) as manageble
+    entities. There are instances where we don&#39;t need to access some
+    tables actively. The less active data can be stored in slower
+    storage devices to reduce cost. This is where tablespaces are
+    useful, each partition can be created under different tablespaces.
+</p>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>Postgres Partitions</b><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">Postgres partitions</a>
+<ul>
+<li><a href="#headline-2">Typical usecase includes:</a>
+</li>
+<li><a href="#headline-3">Partitioning </a>
+<ul>
+<li><a href="#headline-4">Declarative</a>
+<ul>
+<li><a href="#headline-5">Create the table to be partitioned</a>
+</li>
+<li><a href="#headline-6">Create the partitions</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-7">Joins on partitioned tables</a>
+</li>
+<li><a href="#headline-8">Adding and removing partitions </a>
+<ul>
+<li><a href="#headline-9">Add or attach partition</a>
+</li>
+<li><a href="#headline-10">Remove partitions</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-11">Storage costs</a>
+</li>
+</ul>
+</li>
+</ul>\n</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>
