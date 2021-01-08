@@ -17,7 +17,7 @@
       <pubDate>Thu, 07 May 2020 22:50:48 +0200</pubDate>
       
       <guid>http://thepedestrian.in/posts/try-org-hugo/</guid>
-      <description> Hello world  func main() { fmt.Println(&amp;#34;Hello world&amp;#34;) }  </description>
+      <description> Hello world   references:    org mode &amp;amp; html UI extras with hugo: https://niklasfasching.github.io/go-org/#tables.org   func main() { fmt.Println(&amp;#34;Hello world&amp;#34;) }  </description>
     </item>
     
     <item>
