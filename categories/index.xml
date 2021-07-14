@@ -2,48 +2,44 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Notes</title>
-    <link>http://thepedestrian.in/categories/</link>
+    <link>http://shabinesh.github.io/categories/</link>
     <description>Recent content in Categories on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 Jun 2020 20:43:05 +0200</lastBuildDate>
-    
-	<atom:link href="http://thepedestrian.in/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 06 Jun 2020 16:13:34 +0200</lastBuildDate><atom:link href="http://shabinesh.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>self references</title>
-      <link>http://thepedestrian.in/categories/self-references/</link>
-      <pubDate>Sat, 13 Jun 2020 20:43:05 +0200</pubDate>
+      <link>http://shabinesh.github.io/categories/self-references/</link>
+      <pubDate>Sat, 06 Jun 2020 16:13:34 +0200</pubDate>
       
-      <guid>http://thepedestrian.in/categories/self-references/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>study notes</title>
-      <link>http://thepedestrian.in/categories/study-notes/</link>
-      <pubDate>Sat, 13 Jun 2020 20:43:05 +0200</pubDate>
-      
-      <guid>http://thepedestrian.in/categories/study-notes/</guid>
+      <guid>http://shabinesh.github.io/categories/self-references/</guid>
       <description></description>
     </item>
     
     <item>
       <title>golang</title>
-      <link>http://thepedestrian.in/categories/golang/</link>
+      <link>http://shabinesh.github.io/categories/golang/</link>
       <pubDate>Tue, 19 May 2020 17:10:38 +0200</pubDate>
       
-      <guid>http://thepedestrian.in/categories/golang/</guid>
+      <guid>http://shabinesh.github.io/categories/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>study notes</title>
+      <link>http://shabinesh.github.io/categories/study-notes/</link>
+      <pubDate>Tue, 19 May 2020 17:10:38 +0200</pubDate>
+      
+      <guid>http://shabinesh.github.io/categories/study-notes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>learning language</title>
-      <link>http://thepedestrian.in/categories/learning-language/</link>
+      <link>http://shabinesh.github.io/categories/learning-language/</link>
       <pubDate>Tue, 22 May 2018 23:43:08 +0200</pubDate>
       
-      <guid>http://thepedestrian.in/categories/learning-language/</guid>
+      <guid>http://shabinesh.github.io/categories/learning-language/</guid>
       <description></description>
     </item>
     

@@ -2,39 +2,46 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Notes</title>
-    <link>http://thepedestrian.in/posts/</link>
+    <link>http://shabinesh.github.io/posts/</link>
     <description>Recent content in Posts on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 07 May 2020 22:50:48 +0200</lastBuildDate>
-    
-	<atom:link href="http://thepedestrian.in/posts/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Tue, 20 Apr 2021 16:48:11 +0200</lastBuildDate><atom:link href="http://shabinesh.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Elisp for Tools</title>
+      <link>http://shabinesh.github.io/posts/elisp-for-tools/</link>
+      <pubDate>Tue, 20 Apr 2021 16:48:11 +0200</pubDate>
+      
+      <guid>http://shabinesh.github.io/posts/elisp-for-tools/</guid>
+      <description>I worked at a team in HelloFresh where we create products frequently, like anybody else I created a script</description>
+    </item>
     
     <item>
       <title>Setting up the blog with org mode</title>
-      <link>http://thepedestrian.in/posts/try-org-hugo/</link>
+      <link>http://shabinesh.github.io/posts/try-org-hugo/</link>
       <pubDate>Thu, 07 May 2020 22:50:48 +0200</pubDate>
       
-      <guid>http://thepedestrian.in/posts/try-org-hugo/</guid>
-      <description> Hello world   references:    org mode &amp;amp; html UI extras with hugo: https://niklasfasching.github.io/go-org/#tables.org   func main() { fmt.Println(&amp;#34;Hello world&amp;#34;) }  </description>
+      <guid>http://shabinesh.github.io/posts/try-org-hugo/</guid>
+      <description> Hello world   references:
+  org mode &amp;amp; html UI extras with hugo: https://niklasfasching.github.io/go-org/#tables.org
+  func main() { fmt.Println(&amp;#34;Hello world&amp;#34;) }    </description>
     </item>
     
     <item>
       <title>Productivity First Steps</title>
-      <link>http://thepedestrian.in/posts/productivity-first-steps/</link>
+      <link>http://shabinesh.github.io/posts/productivity-first-steps/</link>
       <pubDate>Sun, 15 Apr 2018 14:15:30 +0200</pubDate>
       
-      <guid>http://thepedestrian.in/posts/productivity-first-steps/</guid>
+      <guid>http://shabinesh.github.io/posts/productivity-first-steps/</guid>
       <description>I wanted to share with my friends some of productivity practices I am trying to imbibe in my routine which are giving results. Writing this help me put my ideas in order and I can share without repeating. And here it is. For me being productive is to have more time. The judgement of what is required and what is not, what is worth perusing and what isn&amp;#39;t is a skill to develop.</description>
     </item>
     
     <item>
       <title>SOLID principles in Golang</title>
-      <link>http://thepedestrian.in/posts/2017-03-23-solid-principals/</link>
+      <link>http://shabinesh.github.io/posts/2017-03-23-solid-principals/</link>
       <pubDate>Thu, 23 Mar 2017 11:39:17 +0530</pubDate>
       
-      <guid>http://thepedestrian.in/posts/2017-03-23-solid-principals/</guid>
+      <guid>http://shabinesh.github.io/posts/2017-03-23-solid-principals/</guid>
       <description>Summary:  What is SOLID? Golang&amp;rsquo;s embodiment of SOLID as a language design  This is again a post for myself, as a precursor to the common design pattern in game dev which is possibly a follow up post. The credits for any information put up here goes to Dave Cheney from where I have derived this material.
 What is SOLID? The SOLID principles are the top five, rather important patterns usually found the Object oriented programming languages.</description>
     </item>

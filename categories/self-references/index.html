@@ -34,7 +34,7 @@
 
       <div id="header" class="px-1 bg-white">
         <nav class="UnderlineNav UnderlineNav--right px-2">
-  <a class="UnderlineNav-actions muted-link h2" href="http://thepedestrian.in/">
+  <a class="UnderlineNav-actions muted-link h2" href="http://shabinesh.github.io/">
     Notes
   </a>
 
@@ -51,47 +51,6 @@
 
   <h1>self references</h1>
   
-
-  
-    
-    
-<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
-  <div class="Subhead mb-2">
-    <div class="Subhead-heading">
-      <a href="/notes/ansible-notes/">
-        <div class="h2 mt-1 mb-1">Ansible Notes</div>
-      </a>
-    </div>
-    <div class="Subhead-description">
-      
-
-
-<a href='/categories/self-references' class="muted-link">
-  <span class="Label Label--gray-darker">self references</span>
-</a>
-
-<a href='/categories/study-notes' class="muted-link">
-  <span class="Label Label--gray-darker">study notes</span>
-</a>
-
-
-
-<a href='/tags/ansible' class="muted-link">
-  <span class="Label Label--gray">ansible</span>
-</a>
-
-
-      <div class="float-md-right">
-        <span>2020-06-13</span>
-      </div>
-    </div>
-  </div>
-  <div class="text-gray">
-    
-    Install ansible (on fedora)  sudo dnf install ansible  ansible --version  Create the inventory file   Ansible gets information of machines it has to act on by reading from the inventory file, or `–inventory` flag. ansible all --inventory &#34;localhost,&#34; --module-name debug   This command tell ansible to run on all machines listed in inventory the debug module. This would print localhost | SUCCESS =&gt; { &#34;msg&#34;: &#34;Hello world!
-    <a class="muted-link" href="/notes/ansible-notes/">…</a>
-  </div>
-</div>
 
   
     
@@ -129,7 +88,9 @@
   </div>
   <div class="text-gray">
     
-    Mocking AWS PG Extensions   The project I am working on uses RDS with aws_s3 (&amp; aws_commons) postgres extensions. However these extensions are also need postgres docker container used in the CI for integration tests to not break the migrations. A mock extension was built to keep the tests from breaking.    Create .control files    Create the schema for the module being created    Add the functions in the schema in sql files    In this case there are two .
+    Mocking AWS PG Extensions   The project I am working on uses RDS with aws_s3 (&amp; aws_commons) postgres extensions. However these extensions are also need postgres docker container used in the CI for integration tests to not break the migrations. A mock extension was built to keep the tests from breaking.   Create .control files
+  Create the schema for the module being created
+  Add the functions in the schema in sql files
     <a class="muted-link" href="/notes/mocking_aws_extensions/">…</a>
   </div>
 </div>
@@ -170,7 +131,9 @@
   </div>
   <div class="text-gray">
     
-    again this is for my self reference or for easy copy-paste for new projects.  Assume this is the production grade program we need to dockerize and run. package main import &#34;fmt&#34; func main() { fmt.Println(&#34;saying hello to the world&#34;) }  Basic  FROM golang:1.14-alpine as builder WORKDIR /go/src/github.com/shabinesh/prog COPY main.go . COPY vendor ./vendor RUN go build -o main . FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR / COPY --from=0 /go/src/github.
+    again this is for my self reference or for easy copy-paste for new projects.
+ Assume this is the production grade program we need to dockerize and run. package main import &#34;fmt&#34; func main() { fmt.Println(&#34;saying hello to the world&#34;) }   Basic  #-NAME: Dockerfile multistage build
+FROM golang:1.14-alpine as builder WORKDIR /go/src/github.com/shabinesh/prog COPY main.go . COPY vendor ./vendor RUN go build -o main . FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR / COPY --from=0 /go/src/github.
     <a class="muted-link" href="/notes/docker-golang/">…</a>
   </div>
 </div>
@@ -197,11 +160,6 @@
     <a href="/tags/" class="link-gray-dark">
       <h4>Tags</h4>
     </a>
-    
-    <span class="css-truncate no-wrap m-1 pl-1">
-      <a href="/tags/ansible" class="link-gray text-emphasized css-truncate-target"><span class="">Ansible</span></a>
-      <span class="text-right Counter">1</span>
-    </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/aws" class="link-gray text-emphasized css-truncate-target"><span class="">Aws</span></a>
@@ -280,12 +238,12 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/self-references" class="link-gray text-emphasized css-truncate-target"><span class="">Self references</span></a>
-      <span class="text-right Counter">3</span>
+      <span class="text-right Counter">2</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/study-notes" class="link-gray text-emphasized css-truncate-target"><span class="">Study notes</span></a>
-      <span class="text-right Counter">2</span>
+      <span class="text-right Counter">1</span>
     </span>
     
   </div>

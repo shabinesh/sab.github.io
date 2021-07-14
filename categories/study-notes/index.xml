@@ -2,31 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>study notes on Notes</title>
-    <link>http://thepedestrian.in/categories/study-notes/</link>
+    <link>http://shabinesh.github.io/categories/study-notes/</link>
     <description>Recent content in study notes on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 Jun 2020 20:43:05 +0200</lastBuildDate>
-    
-	<atom:link href="http://thepedestrian.in/categories/study-notes/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Ansible Notes</title>
-      <link>http://thepedestrian.in/notes/ansible-notes/</link>
-      <pubDate>Sat, 13 Jun 2020 20:43:05 +0200</pubDate>
-      
-      <guid>http://thepedestrian.in/notes/ansible-notes/</guid>
-      <description>Install ansible (on fedora)  sudo dnf install ansible  ansible --version  Create the inventory file   Ansible gets information of machines it has to act on by reading from the inventory file, or `–inventory` flag. ansible all --inventory &amp;#34;localhost,&amp;#34; --module-name debug   This command tell ansible to run on all machines listed in inventory the debug module. This would print localhost | SUCCESS =&amp;gt; { &amp;#34;msg&amp;#34;: &amp;#34;Hello world!</description>
-    </item>
-    
+    <lastBuildDate>Tue, 19 May 2020 17:10:38 +0200</lastBuildDate><atom:link href="http://shabinesh.github.io/categories/study-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Golang Reflect</title>
-      <link>http://thepedestrian.in/notes/golang-reflect/</link>
+      <link>http://shabinesh.github.io/notes/golang-reflect/</link>
       <pubDate>Tue, 19 May 2020 17:10:38 +0200</pubDate>
       
-      <guid>http://thepedestrian.in/notes/golang-reflect/</guid>
-      <description>Reflection in Golang  Incase you are here looking to learn about reflection, a better resource is https://blog.golang.org/laws-of-reflection   Interfaces in Go are types which hold concrete value and underlying type of the value with a precondition that value should implement methods of the interface. For example; types implementing Read([]byte) (int, error) method satisfy the io.Reader interface. However interface{}, without any method definition will match all types.  A struct type can be assigned to an empty interface, the assertion is the concrete type should implement the methods of the interface type.</description>
+      <guid>http://shabinesh.github.io/notes/golang-reflect/</guid>
+      <description>Reflection in Golang  Incase you are here looking to learn about reflection, a better resource is https://blog.golang.org/laws-of-reflection   Interfaces in Go are types which hold concrete value and underlying type of the value with a precondition that value should implement methods of the interface. For example; types implementing Read([]byte) (int, error) method satisfy the io.Reader interface. However interface{}, without any method definition will match all types.
+ A struct type can be assigned to an empty interface, the assertion is the concrete type should implement the methods of the interface type.</description>
     </item>
     
   </channel>

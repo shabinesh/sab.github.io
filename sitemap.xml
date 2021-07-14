@@ -3,152 +3,147 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://thepedestrian.in/notes/</loc>
+    <loc>http://shabinesh.github.io/posts/elisp-for-tools/</loc>
+    <lastmod>2021-04-20T16:48:11+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/</loc>
+    <lastmod>2021-04-20T16:48:11+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/posts/</loc>
+    <lastmod>2021-04-20T16:48:11+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/notes/</loc>
     <lastmod>2021-01-05T14:37:33+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/</loc>
+    <loc>http://shabinesh.github.io/notes/postgres-partitions/</loc>
     <lastmod>2021-01-05T14:37:33+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/notes/postgres-partitions/</loc>
+    <loc>http://shabinesh.github.io/tags/postgresql/</loc>
     <lastmod>2021-01-05T14:37:33+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/tags/postgresql/</loc>
+    <loc>http://shabinesh.github.io/tags/study-notes/</loc>
     <lastmod>2021-01-05T14:37:33+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/tags/study-notes/</loc>
+    <loc>http://shabinesh.github.io/tags/</loc>
     <lastmod>2021-01-05T14:37:33+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/tags/</loc>
-    <lastmod>2021-01-05T14:37:33+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://thepedestrian.in/tags/ansible/</loc>
-    <lastmod>2020-06-13T20:43:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://thepedestrian.in/notes/ansible-notes/</loc>
-    <lastmod>2020-06-13T20:43:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://thepedestrian.in/categories/</loc>
-    <lastmod>2020-06-13T20:43:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://thepedestrian.in/categories/self-references/</loc>
-    <lastmod>2020-06-13T20:43:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://thepedestrian.in/categories/study-notes/</loc>
-    <lastmod>2020-06-13T20:43:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://thepedestrian.in/tags/aws/</loc>
+    <loc>http://shabinesh.github.io/tags/aws/</loc>
     <lastmod>2020-06-06T16:13:34+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/tags/docker/</loc>
+    <loc>http://shabinesh.github.io/categories/</loc>
     <lastmod>2020-06-06T16:13:34+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/notes/mocking_aws_extensions/</loc>
+    <loc>http://shabinesh.github.io/tags/docker/</loc>
     <lastmod>2020-06-06T16:13:34+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/categories/golang/</loc>
+    <loc>http://shabinesh.github.io/notes/mocking_aws_extensions/</loc>
+    <lastmod>2020-06-06T16:13:34+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/categories/self-references/</loc>
+    <lastmod>2020-06-06T16:13:34+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/categories/golang/</loc>
     <lastmod>2020-05-19T17:10:38+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/notes/golang-reflect/</loc>
+    <loc>http://shabinesh.github.io/notes/golang-reflect/</loc>
     <lastmod>2020-05-19T17:10:38+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/notes/docker-golang/</loc>
+    <loc>http://shabinesh.github.io/categories/study-notes/</loc>
+    <lastmod>2020-05-19T17:10:38+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/notes/docker-golang/</loc>
     <lastmod>2020-05-08T13:53:26+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/tags/go/</loc>
+    <loc>http://shabinesh.github.io/tags/golang/</loc>
     <lastmod>2020-05-08T13:53:26+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/tags/golang/</loc>
-    <lastmod>2020-05-08T13:53:26+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://thepedestrian.in/posts/</loc>
+    <loc>http://shabinesh.github.io/posts/try-org-hugo/</loc>
     <lastmod>2020-05-07T22:50:48+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/posts/try-org-hugo/</loc>
-    <lastmod>2020-05-07T22:50:48+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://thepedestrian.in/notes/japanese-hiragana-first-steps/</loc>
+    <loc>http://shabinesh.github.io/notes/japanese-hiragana-first-steps/</loc>
     <lastmod>2018-05-22T23:43:08+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/tags/japanese/</loc>
+    <loc>http://shabinesh.github.io/tags/japanese/</loc>
     <lastmod>2018-05-22T23:43:08+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/tags/languages/</loc>
+    <loc>http://shabinesh.github.io/tags/languages/</loc>
     <lastmod>2018-05-22T23:43:08+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/categories/learning-language/</loc>
+    <loc>http://shabinesh.github.io/categories/learning-language/</loc>
     <lastmod>2018-05-22T23:43:08+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/tags/productivity/</loc>
+    <loc>http://shabinesh.github.io/tags/productivity/</loc>
     <lastmod>2018-04-15T14:15:30+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/posts/productivity-first-steps/</loc>
+    <loc>http://shabinesh.github.io/posts/productivity-first-steps/</loc>
     <lastmod>2018-04-15T14:15:30+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/tags/self-improvement/</loc>
+    <loc>http://shabinesh.github.io/tags/self-improvement/</loc>
     <lastmod>2018-04-15T14:15:30+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/tags/go-design-patterns/</loc>
+    <loc>http://shabinesh.github.io/tags/go/</loc>
     <lastmod>2017-03-23T11:39:17+05:30</lastmod>
   </url>
   
   <url>
-    <loc>http://thepedestrian.in/posts/2017-03-23-solid-principals/</loc>
+    <loc>http://shabinesh.github.io/tags/go-design-patterns/</loc>
+    <lastmod>2017-03-23T11:39:17+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shabinesh.github.io/posts/2017-03-23-solid-principals/</loc>
     <lastmod>2017-03-23T11:39:17+05:30</lastmod>
   </url>
   

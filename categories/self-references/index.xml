@@ -2,40 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>self references on Notes</title>
-    <link>http://thepedestrian.in/categories/self-references/</link>
+    <link>http://shabinesh.github.io/categories/self-references/</link>
     <description>Recent content in self references on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 Jun 2020 20:43:05 +0200</lastBuildDate>
-    
-	<atom:link href="http://thepedestrian.in/categories/self-references/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Ansible Notes</title>
-      <link>http://thepedestrian.in/notes/ansible-notes/</link>
-      <pubDate>Sat, 13 Jun 2020 20:43:05 +0200</pubDate>
-      
-      <guid>http://thepedestrian.in/notes/ansible-notes/</guid>
-      <description>Install ansible (on fedora)  sudo dnf install ansible  ansible --version  Create the inventory file   Ansible gets information of machines it has to act on by reading from the inventory file, or `–inventory` flag. ansible all --inventory &amp;#34;localhost,&amp;#34; --module-name debug   This command tell ansible to run on all machines listed in inventory the debug module. This would print localhost | SUCCESS =&amp;gt; { &amp;#34;msg&amp;#34;: &amp;#34;Hello world!</description>
-    </item>
-    
+    <lastBuildDate>Sat, 06 Jun 2020 16:13:34 +0200</lastBuildDate><atom:link href="http://shabinesh.github.io/categories/self-references/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mocking AWS Postgres Extensions</title>
-      <link>http://thepedestrian.in/notes/mocking_aws_extensions/</link>
+      <link>http://shabinesh.github.io/notes/mocking_aws_extensions/</link>
       <pubDate>Sat, 06 Jun 2020 16:13:34 +0200</pubDate>
       
-      <guid>http://thepedestrian.in/notes/mocking_aws_extensions/</guid>
-      <description>Mocking AWS PG Extensions   The project I am working on uses RDS with aws_s3 (&amp;amp; aws_commons) postgres extensions. However these extensions are also need postgres docker container used in the CI for integration tests to not break the migrations. A mock extension was built to keep the tests from breaking.    Create .control files    Create the schema for the module being created    Add the functions in the schema in sql files    In this case there are two .</description>
+      <guid>http://shabinesh.github.io/notes/mocking_aws_extensions/</guid>
+      <description>Mocking AWS PG Extensions   The project I am working on uses RDS with aws_s3 (&amp;amp; aws_commons) postgres extensions. However these extensions are also need postgres docker container used in the CI for integration tests to not break the migrations. A mock extension was built to keep the tests from breaking.   Create .control files
+  Create the schema for the module being created
+  Add the functions in the schema in sql files</description>
     </item>
     
     <item>
       <title>Docker Golang</title>
-      <link>http://thepedestrian.in/notes/docker-golang/</link>
+      <link>http://shabinesh.github.io/notes/docker-golang/</link>
       <pubDate>Fri, 08 May 2020 13:53:26 +0200</pubDate>
       
-      <guid>http://thepedestrian.in/notes/docker-golang/</guid>
-      <description>again this is for my self reference or for easy copy-paste for new projects.  Assume this is the production grade program we need to dockerize and run. package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(&amp;#34;saying hello to the world&amp;#34;) }  Basic  FROM golang:1.14-alpine as builder WORKDIR /go/src/github.com/shabinesh/prog COPY main.go . COPY vendor ./vendor RUN go build -o main . FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR / COPY --from=0 /go/src/github.</description>
+      <guid>http://shabinesh.github.io/notes/docker-golang/</guid>
+      <description>again this is for my self reference or for easy copy-paste for new projects.
+ Assume this is the production grade program we need to dockerize and run. package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(&amp;#34;saying hello to the world&amp;#34;) }   Basic  #-NAME: Dockerfile multistage build
+FROM golang:1.14-alpine as builder WORKDIR /go/src/github.com/shabinesh/prog COPY main.go . COPY vendor ./vendor RUN go build -o main . FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR / COPY --from=0 /go/src/github.</description>
     </item>
     
   </channel>
